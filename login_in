@@ -1,0 +1,38 @@
+#_*_coding:utf-8_*_
+ 
+times = 0 # 初始次数为0
+ 
+Username = "wuqiangroy"
+userpassword = "123321"
+f = open("aaa.txt", "r")  # 以read模式打开aaa.txt文件，如果没有自动创建。
+file_list = f.readlines()
+f.close()
+ 
+lock = [] #lock为一个列表。
+ 
+for i in file_list:
+    line = i.strip("\n")
+    lock.append(line)
+ 
+else:
+    while times < 3:
+        username = raw_input("Please enter the username: ")
+        if username in lock: #检测输入帐户名是否在lock中，如果在，显示账户被锁定，然后break跳出循环。
+            print "You account has been locked!"
+            break
+        password = raw_input("Please enter your password: ")
+        if username == Username and password == userpassword:
+            print "Successfull! Welcome log in!"
+            break
+        else:
+            print "Your username or password is wrong! Please enter again! "
+         
+        times += 1
+        print "You just have only %s shots!" %(3-times)
+  
+    else:
+        print "The only 3 times you used out, the account has been locked!"
+        f = open("aaa.txt", "w+") #以写入模式打开aaa.txt文件
+        f.write("\n")
+        f.write(username) #三次机会输入错误，将输入的名字写进aaa.txt文件中。
+        f.close()
