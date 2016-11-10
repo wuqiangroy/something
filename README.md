@@ -1,2 +1,2 @@
 # QiangWu
-a new pythoner
+个人码的一些代码。
