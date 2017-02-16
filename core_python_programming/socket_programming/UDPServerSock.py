@@ -17,7 +17,7 @@ UDP_server_sock.bind(ADDR)
 while True:
     print(u'等待消息……')
     data, addr = UDP_server_sock.recvfrom(BUFSIZ)
-    UDP_server_sock.send('[%S], %S' % (ctime(), data, addr))
+    UDP_server_sock.sendto('[%s], %s' % (ctime(), data), addr)
     print('...receive from and returned to:', addr)
 
 UDP_server_sock.close()
