@@ -15,7 +15,7 @@ class ThreadingFunc(object):
         self.args = args
 
     def __call__(self):
-        apply(self.func, self.args)
+        self.res = self.func(*self.args)
 
 
 def loop(nloop, nsec):
