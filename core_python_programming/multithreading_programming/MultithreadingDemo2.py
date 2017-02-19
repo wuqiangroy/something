@@ -30,6 +30,7 @@ def main():
     nloops = range(len(loops))
 
     for i in nloops:
+        # 在ThreadingFunc类中，把loop函数、(i, loops[i])带入，name即loop的名字。
         t = threading.Thread(
             target=ThreadingFunc(loop, (i, loops[i]),
                                  loop.__name__))
