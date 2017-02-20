@@ -10,13 +10,13 @@
 
 def quick_sort(lst, low, high):
     if low < high:
-        pivot_index = patition(lst, low, high)
+        pivot_index = partion(lst, low, high)
         # 将列表按基准点分开排序
         quick_sort(lst, low, pivot_index)
         quick_sort(lst, pivot_index+1, high)
 
 
-def patition(lst, low, high):
+def partion(lst, low, high):
     key = lst[low]      # 基准点
     while low < high:
         # 右边一直往左走（high -= 1）， 直到小于基准点
