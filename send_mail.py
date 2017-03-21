@@ -24,7 +24,7 @@ mail_text = """
 """
 
 SENDER = "wuqiangroy@live.com"
-PASSWORD = os.getenv("password") or "WuQiang123"
+PASSWORD = os.getenv("password")
 RECEIVER = "wuqiangroy@gmail.com"
 SMTP_SERVER = "smtp-mail.outlook.com:587"
 
