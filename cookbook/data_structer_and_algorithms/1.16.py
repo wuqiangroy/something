@@ -19,5 +19,5 @@ more1 = [i > 5 for i in count]
 print(more1)
 
 from itertools import compress
-more2 = compress(address, count)
+more2 = compress(address, more1)
 print(more2)
