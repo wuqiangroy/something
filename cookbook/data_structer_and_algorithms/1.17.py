@@ -1,4 +1,5 @@
-# coding=utf-8
+#!/usr/bin/env python
+# _*_ coding:utf-8 _*_
 
 """创建一个字典，本身是另一个字典的子集"""
 
