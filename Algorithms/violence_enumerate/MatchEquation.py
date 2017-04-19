@@ -23,8 +23,8 @@ def match_nums(x):
 
 
 def main(n):
-    for a in xrange(1000):
-        for b in xrange(1000):
+    for a in range(1000):
+        for b in range(1000):
             c = a + b
             if match_nums(a) + match_nums(b) + match_nums(c) == n - 4:
                 print('{0} + {1} = {2}'.format(a, b, c))
