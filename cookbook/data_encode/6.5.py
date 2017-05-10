@@ -5,6 +5,7 @@
 
 from xml.etree.ElementTree import Element, tostring
 
+
 def dic_to_xml(tag, d):
 
     ele = Element(tag)
