@@ -2,7 +2,7 @@
 __pycache__/
 *~
 migrations
-.idea/*
+.idea/
 *.py[cod]
 *$py.class
 *.pyc
