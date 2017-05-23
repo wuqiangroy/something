@@ -10,7 +10,7 @@ POP3SVR = 'pop.python.is.cool'
 
 OrigHdrs = ['From: wesley@python.is.cool',
             'TO: wesley@python.is.cool',
-            'Subject: test msg',]
+            'Subject: hewen msg',]
 OrigBody = ['xxx', 'yyy', 'zzz']
 OrigMsg = '\r\n\r\n'.join(['\r\n'.join(OrigHdrs), '\r\n'.join(OrigBody)])
 

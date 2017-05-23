@@ -19,7 +19,7 @@ def _format_add(s):
     ))
 
 mail_text = """
-<h2>This is a test email!</h2>
+<h2>This is a hewen email!</h2>
 <h2>Python is a fucking useful coding language.</h2>
 """
 
@@ -36,10 +36,10 @@ msg.attach(MIMEText(mail_text, "html", "utf-8"))
 
 # 添加附件
 
-mime = MIMEText(open("/home/wq/work_test/test.txt", "rb").read(), "base64", "utf-8")
+mime = MIMEText(open("/home/wq/work_test/hewen.txt", "rb").read(), "base64", "utf-8")
 # 设置发送出去附件的格式
 mime["Content-Type"] = "application/octet-stream"
-mime["Content-Disposition"] = "attachment; filename = 'test.txt'"
+mime["Content-Disposition"] = "attachment; filename = 'hewen.txt'"
 msg.attach(mime)
 
 server = smtplib.SMTP(SMTP_SERVER)
