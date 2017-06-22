@@ -32,5 +32,8 @@ def add(x, y):
 def spam():
     print("Spam")
 
+logging.basicConfig(level=logging.DEBUG)
 print(add(5, 10))
-spam()
+
+# logging.basicConfig(level=logging.CRITICAL)
+# spam()
