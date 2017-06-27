@@ -39,5 +39,5 @@ def insertion_sort2(lst):
 
 if __name__ == '__main__':
     lst = [2, 3, 5, 2, 7, 5, 4, 3]
-    print insertion_sort(lst)
-    print insertion_sort2(lst)
+    print(insertion_sort(lst))
+    print(insertion_sort2(lst))

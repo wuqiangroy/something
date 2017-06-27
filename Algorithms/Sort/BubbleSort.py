@@ -16,4 +16,4 @@ def bubble_sort(lst):
 
 if __name__ == '__main__':
     lst = [1, 3, 5, 6, 3, 1, 9, 2, 1, 8, 5]
-    print bubble_sort(lst)
+    print(bubble_sort(lst))
