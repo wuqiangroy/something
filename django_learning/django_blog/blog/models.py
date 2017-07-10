@@ -1,11 +1,23 @@
-from django.db import models
 import ast
+from django.db import models
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(models.Model):
     username = models.CharField(max_length=32)
     email = models.EmailField()
-    password = models.CharField(max_length=32)
+    password_hash = models.CharField(max_length=32)
+
+    @property
+    def password(self):
+        return AttributeError("password is not a callable attribute")
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     # shell中User显示<User: username>而不是<User: User objects>
     def __str__(self):
