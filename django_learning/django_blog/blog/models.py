@@ -1,4 +1,5 @@
 from django.db import models
+import ast
 
 
 class User(models.Model):
@@ -37,3 +38,36 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.tag_name
+
+
+# 自定义Field
+class ListField(models.TextField):
+
+    description = "store a python list"
+
+    def __init__(self, *args, **kwargs):
+        super(ListField, self).__init__(*args, **kwargs)
+
+    def from_db_value(self, value, expression, connection, context):
+        return value
+
+    def to_python(self, value):
+        if not value:
+            value = []
+        if isinstance(list, value):
+            return value
+        return ast.literal_eval(value)
+
+    def get_prep_value(self, value):
+        if value is None:
+            return value
+
+        return str(value)
+
+    def value_to_string(self, obj):
+        value = self._get_val_from_obj(obj)
+        return self.get_db_prep_value(value)
+
+
+class Country(models.Model):
+    name = ListField()
