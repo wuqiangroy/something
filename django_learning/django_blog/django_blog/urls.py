@@ -20,5 +20,6 @@ from blog import views as blog_view
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r"^api/home/", blog_view.index),
-    url(r"^api/person/$", blog_view.get_data)
+    url(r"^api/person/$", blog_view.get_data),
+    url(r"^api/panel/$", blog_view.panel)
 ]
