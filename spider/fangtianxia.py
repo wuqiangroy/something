@@ -3,7 +3,7 @@
 
 import json
 import requests
-from math import 
+from math import ceil
 from bs4 import BeautifulSoup
 
 
@@ -27,24 +27,33 @@ def get_data(city):
     res = requests.get(url, headers=headers)
     res = res.text.encode("ISO-8859-1")
     soup = BeautifulSoup(res, "html5lib")
-    n = int(soup.find(attrs={"class": "page"}).strong.text)/20
-    # for i in soup.find_all(attrs={"class": "nlc_details"}):
-    #     # house.append({i.text.strip("\t\n"): {}})
-    #     name = i.find(attrs={"class": "nlcd_name"}).text.strip("\t\n")
-    #     address = i.find(attrs={"class": "address"}).a["title"]
-    #     price = i.find(attrs={"class": "nhouse_price"}).text.strip("\t\n")
-    #     if name in house:
-    #         if house.get(name).get("price") == price:
-    #             pass
-    #         else:
-    #             house[name]["price"] = price
-    #     else:
-    #         house.update(
-    #             {name: {
-    #                 "price": price,
-    #                 "address": address
-    #             }})
-    # return json.dumps(house)
+    n = ceil(int(soup.find(attrs={"class": "page"}).strong.text)/20)
+    print(n, type(n))
+    page = 1
+    while page < n:
+        url = "http://newhouse.cd.fang.com/house/s/{}/b1pd-b9{}/".format(city, page)
+        res = requests.get(url, headers=headers)
+        res = res.text.encode("ISO-8859-1")
+        soup = BeautifulSoup(res, "html5lib")
+        for i in soup.find_all(attrs={"class": "nlc_details"}):
+            # house.append({i.text.strip("\t\n"): {}})
+            name = i.find(attrs={"class": "nlcd_name"}).text.strip("\t\n")
+            address = i.find(attrs={"class": "address"}).a["title"]
+            price = i.find(attrs={"class": "nhouse_price"}).text.strip("\t\n")
+            if name in house:
+                if house.get(name).get("price") == price:
+                    pass
+                else:
+                    house[name]["price"] = price
+            else:
+                house.update(
+                    {name: {
+                        "price": price,
+                        "address": address
+                    }})
+        page += 1
+    print(len(house))
+    return json.dumps(house)
     # for i in soup.find_all(attrs={"class": "nhouse_price"}):
     #     if
     #     print("price: ", (i.text.strip("\t\n")))
@@ -52,4 +61,4 @@ def get_data(city):
     #     print("address: ", (i.text.replace("\n", "").replace("\t", "")))
 
 if __name__ == "__main__":
-    print(get_data("shuangliu"))
+    print(get_data("wuhou"))
