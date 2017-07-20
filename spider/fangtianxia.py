@@ -59,6 +59,36 @@ def get_data(city):
     #     print("price: ", (i.text.strip("\t\n")))
     # for i in soup.find_all(attrs={"class": "address"}):
     #     print("address: ", (i.text.replace("\n", "").replace("\t", "")))
+    
+    
+def cdlr(year=2017):
+    """成都市国土资源局土地出让结果"""
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+    }
+    url = "http://www.cdlr.gov.cn/second/zpggg.aspx"
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.text, "html5lib")
+    url_pool = []
+    for i in soup.find_all(attrs={"style": "padding-left:5px;"}):
+        if "一览表" in i.a["title"]:
+            url_node = "http://www.cdlr.gov.cn" + i.a["href"][2:]
+            url_pool.append(url_node)
+    # print(url_pool)
+    data = {}
+    for url in url_pool:
+        res = requests.get(url, headers=headers)
+        soup = BeautifulSoup(res.text, "html5lib")
+        s = soup.find_all("td")
+        for i in range(len(s)):
+            if (i-1) % 7 == 0:
+                # print(url)
+                data.update({
+                    s[i].text: [s[i+1].text, s[i+2].text, s[i+3].text, s[i+3].text, s[i+4].text, s[i+5].text]
+                })
+    print(json.dumps(data))
 
 if __name__ == "__main__":
     print(get_data("wuhou"))
