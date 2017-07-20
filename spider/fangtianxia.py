@@ -98,8 +98,8 @@ def weibo():
 
     }
     url = "https://passport.weibo.cn/sso/login"
-    form = {"username": os.environ.get("username"), "password": os.environ.get("password")}
-    res = requests.post(url, headers=headers, data=form)
+    params = {"username": os.environ.get("username"), "password": os.environ.get("password")}
+    res = requests.post(url, headers=headers, data=params)
     print(res.text)
 
 if __name__ == "__main__":
