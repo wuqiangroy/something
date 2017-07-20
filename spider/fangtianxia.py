@@ -89,6 +89,18 @@ def cdlr(year=2017):
                     s[i].text: [s[i+1].text, s[i+2].text, s[i+3].text, s[i+3].text, s[i+4].text, s[i+5].text]
                 })
     print(json.dumps(data))
+    
+   
+def weibo():
+    headers = {
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+        "Referer": "https://passport.weibo.cn/signin/login?entry=mweibo&r=http%3A%2F%2Fm.weibo.cn",
+
+    }
+    url = "https://passport.weibo.cn/sso/login"
+    form = {"username": os.environ.get("username"), "password": os.environ.get("password")}
+    res = requests.post(url, headers=headers, data=form)
+    print(res.text)
 
 if __name__ == "__main__":
     print(get_data("wuhou"))
