@@ -1,14 +1,15 @@
 #!usr/bin/env python
 # _*_ coding:utf-8 _*_
 
+import os
 import json
 import requests
 from math import ceil
 from bs4 import BeautifulSoup
 
 
-def get_data(city):
-    """获取数据"""
+def fangtainxia(city):
+    """房天下数据"""
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
@@ -26,7 +27,7 @@ def get_data(city):
     house = {}
     res = requests.get(url, headers=headers)
     res = res.text.encode("ISO-8859-1")
-    soup = BeautifulSoup(res, "html5lib")
+    soup = BeautifulSoup(res, "html.parser")
     n = ceil(int(soup.find(attrs={"class": "page"}).strong.text)/20)
     print(n, type(n))
     page = 1
@@ -34,7 +35,7 @@ def get_data(city):
         url = "http://newhouse.cd.fang.com/house/s/{}/b1pd-b9{}/".format(city, page)
         res = requests.get(url, headers=headers)
         res = res.text.encode("ISO-8859-1")
-        soup = BeautifulSoup(res, "html5lib")
+        soup = BeautifulSoup(res, "html.parser")
         for i in soup.find_all(attrs={"class": "nlc_details"}):
             # house.append({i.text.strip("\t\n"): {}})
             name = i.find(attrs={"class": "nlcd_name"}).text.strip("\t\n")
@@ -70,7 +71,7 @@ def cdlr(year=2017):
     }
     url = "http://www.cdlr.gov.cn/second/zpggg.aspx"
     response = requests.get(url, headers=headers)
-    soup = BeautifulSoup(response.text, "html5lib")
+    soup = BeautifulSoup(response.text, "html.parser")
     url_pool = []
     for i in soup.find_all(attrs={"style": "padding-left:5px;"}):
         if "一览表" in i.a["title"]:
@@ -80,7 +81,7 @@ def cdlr(year=2017):
     data = {}
     for url in url_pool:
         res = requests.get(url, headers=headers)
-        soup = BeautifulSoup(res.text, "html5lib")
+        soup = BeautifulSoup(res.text, "html.parser")
         s = soup.find_all("td")
         for i in range(len(s)):
             if (i-1) % 7 == 0:
@@ -103,4 +104,5 @@ def weibo():
     print(res.text)
 
 if __name__ == "__main__":
-    print(get_data("wuhou"))
+    # print(fangtainxia("wuhou"))
+    cdlr()
