@@ -113,13 +113,11 @@ def lianjia():
     # 英伦联邦
     url = "https://cd.lianjia.com/zufang/rs%E8%8B%B1%E4%BC%A6%E8%81%94%E9%82%A6/"
     response = requests.get(url, headers=headers)
-
-
-
-
-
-
+    soup = BeautifulSoup(response.text, "html.parser")
+    # house_lst = soup.find_all(attrs={"class": "housr-lst"})
+    print(response.text)
 
 if __name__ == "__main__":
     # print(fangtainxia("wuhou"))
-    cdlr()
+    # cdlr()
+    lianjia()
