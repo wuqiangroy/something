@@ -103,6 +103,23 @@ def weibo():
     res = requests.post(url, headers=headers, data=params)
     print(res.text)
 
+
+def lianjia():
+    """链家网数据"""
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36"
+    }
+    # 英伦联邦
+    url = "https://cd.lianjia.com/zufang/rs%E8%8B%B1%E4%BC%A6%E8%81%94%E9%82%A6/"
+    response = requests.get(url, headers=headers)
+
+
+
+
+
+
+
 if __name__ == "__main__":
     # print(fangtainxia("wuhou"))
     cdlr()
