@@ -114,10 +114,24 @@ def lianjia():
     url = "https://cd.lianjia.com/zufang/rs%E8%8B%B1%E4%BC%A6%E8%81%94%E9%82%A6/"
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
-    # house_lst = soup.find_all(attrs={"class": "housr-lst"})
+    # house_lst = soup.find_all(attrs={"class": "house-lst"})
     print(response.text)
+
+
+def douban_movies():
+    """豆瓣电影数据"""
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36"
+    }
+    url = "https://movie.douban.com/top250"
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.text, "html.parser")
+    for i in soup.find_all(attrs={"class": "grid_view"}):
+        print(i)
 
 if __name__ == "__main__":
     # print(fangtainxia("wuhou"))
     # cdlr()
-    lianjia()
+    # lianjia()
+    douban_movies()
