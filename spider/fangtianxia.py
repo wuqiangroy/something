@@ -125,10 +125,19 @@ def douban_movies():
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36"
     }
     url = "https://movie.douban.com/top250"
+    dic = {}
     response = requests.get(url, headers=headers)
-    soup = BeautifulSoup(response.text, "html.parser")
-    for i in soup.find_all(attrs={"class": "grid_view"}):
-        print(i)
+    soup = BeautifulSoup(response.text, "html5lib")
+    for i in soup.find_all(attrs={"class": "item"}):
+        title = i.find_all(attrs={"class": "title"})[0].text
+        if len(i.find_all(attrs={"class": "title"})) > 1:
+            englishName = i.find_all(attrs={"class": "title"})[1].text
+        else:
+            englishName = None
+        nickname = i.find(attrs={"class": "other"}).text
+        score = i.find(attrs={"class": "rating_num"}).text
+        print(score)
+    # print(soup.find(attrs={"class": "grid_view"}))
 
 if __name__ == "__main__":
     # print(fangtainxia("wuhou"))
