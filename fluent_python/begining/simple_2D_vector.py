@@ -16,12 +16,14 @@ class Vector():
         self.x = x
         self.y = y
 
+    # also can use __str__
     def __repr__(self):
         return "Vector({}, {})".format(self.x, self.y)
 
     def __abs__(self):
         return hypot(self.x, self.y)
 
+    # if Vector(0, 0), means false
     def __bool__(self):
         return bool(abs(self))
 
@@ -43,3 +45,7 @@ if __name__ == "__main__":
     v4 = Vector(-3, 4)
     print(v4)
     print(abs(v4))
+
+    # TypeError, must be number not str
+    v5 = Vector("3", "5")
+    # print(v5, abs(v5))
