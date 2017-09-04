@@ -2,6 +2,7 @@
 
 import sys
 import bisect
+import random
 
 
 haystack = [1, 3, 4, 6, 7, 8, 9, 11, 15, 19, 22, 29, 33, 41, 54]
@@ -16,6 +17,15 @@ def demo(bisect_fun):
         offset = position * "  |"
         print(row_fmt.format(needle, position, offset))
 
+
+def insert(size):
+    random.seed(1729)
+    my_list = []
+    for i in range(size):
+        new_item = random.randrange(size*2)
+        bisect.insort(my_list, new_item)
+        print("%2d ->" % new_item, my_list)
+
 if __name__ == "__main__":
     if sys.argv[-1] == "left":
         bisect_fun = bisect.bisect_left
@@ -25,3 +35,4 @@ if __name__ == "__main__":
     print("Demo: ", bisect_fun.__name__)
     print("haystack -> ", " ".join("%2d" % n for n in haystack))
     print(demo(bisect_fun))
+    insert(7)
