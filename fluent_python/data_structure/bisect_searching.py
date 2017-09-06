@@ -1,4 +1,4 @@
-# _*_ uft-8 _*_
+# _*_ coding:uft-8 _*_
 
 import sys
 import bisect
