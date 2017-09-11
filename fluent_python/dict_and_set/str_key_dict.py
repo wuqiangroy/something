@@ -17,7 +17,8 @@ class StrKeyDict(dict):
         return key in self.keys() or str(key) in self.keys()
 
 if __name__ == "__main__":
-    d = StrKeyDict([("2", "two"), ("3", "three")])
+    # d = StrKeyDict([("2", "two"), ("3", "three")])
+    d  = StrKeyDict({"2": "two", "3": "three"})
     print(d)
     print(d["2"])
     print(d[3])
