@@ -18,6 +18,7 @@ def search(sort_list, num):
             high = index
         else:
             low = index
+    return None
 
 
 if __name__ == "__main__":
