@@ -21,7 +21,7 @@ class Vector:
         return str(tuple(self))
 
     def __bytes__(self):
-        return (bytes([ord(self.typecode)])+bytes(self._components))
+        return bytes([ord(self.typecode)])+bytes(self._components)
 
     def __eq__(self, other):
         return tuple(self) == tuple(other)
@@ -37,6 +37,7 @@ class Vector:
         typecode = chr(octets[0])
         memv = memoryview(octets[1:].cast(typecode))
         return cls(memv)
+
 
 if __name__ == "__main__":
     vector = Vector((1, 2, 3))
